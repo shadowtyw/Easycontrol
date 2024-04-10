@@ -26,8 +26,8 @@ public class ActiveActivity extends Activity {
     activityActiveBinding = ActivityActiveBinding.inflate(this.getLayoutInflater());
     setContentView(activityActiveBinding.getRoot());
     // 取消激活
-    if (AppData.setting.getIsActive()) deactivate();
-    setButtonListener();
+    // if (AppData.setting.getIsActive()) deactivate();
+    // setButtonListener();
     // 绘制UI
     drawUi();
   }
@@ -45,34 +45,34 @@ public class ActiveActivity extends Activity {
       loading.second.show();
       new Thread(() -> {
         // boolean isOk = ActiveHelper.active(activeKey);
-        loading.second.cancel();
-        // AppData.uiHandler.post(() -> {
+         loading.second.cancel();
+         AppData.uiHandler.post(() -> {
           // if (isOk) {
           //  finish();
            // AppData.setting.setIsActive(true);
           //  PublicTools.startUrl(this, "https://gitee.com/mingzhixianweb/easycontrol/blob/master/HOW_TO_USE.md");
           //  PublicTools.logToast("active", getString(R.string.toast_success), true);
          // } else PublicTools.logToast("active", getString(R.string.toast_fail), true);
-      //  });
+        });
       }).start();
     });
   }
 
   // 取消激活
- private void deactivate() {
-    Pair<ItemLoadingBinding, Dialog> loading = ViewTools.createLoading(this);
-    loading.second.show();
-    new Thread(() -> {
+ // private void deactivate() {
+   // Pair<ItemLoadingBinding, Dialog> loading = ViewTools.createLoading(this);
+    // loading.second.show();
+   // new Thread(() -> {
       // boolean isOk = ActiveHelper.deactivate(AppData.setting.getActiveKey());
-      loading.second.cancel();
+     // loading.second.cancel();
      // AppData.uiHandler.post(() -> {
        // if (isOk) {
        //  AppData.setting.setIsActive(false);
        //  PublicTools.logToast("deactivate", getString(R.string.toast_success), true);
        // } else PublicTools.logToast("deactivate", getString(R.string.toast_fail), true);
      // });
-     }).start();
-  }
+    // }).start();
+ // }
 
   @Override
   public void onBackPressed() {
