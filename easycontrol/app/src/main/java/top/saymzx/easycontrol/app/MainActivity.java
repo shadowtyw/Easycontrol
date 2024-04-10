@@ -39,14 +39,6 @@ public class MainActivity extends Activity {
     activityMainBinding = ActivityMainBinding.inflate(this.getLayoutInflater());
     setContentView(activityMainBinding.getRoot());
  
-  @Override
-  protected void onDestroy() {
-    myBroadcastReceiver.unRegister(this);
-    super.onDestroy();
-  }
-
-    // 启动步骤
-    private void startApp() {
     // 检测激活
     // checkActive();
     // 设置设备列表适配器
@@ -63,13 +55,18 @@ public class MainActivity extends Activity {
     AppData.uiHandler.postDelayed(() -> {
       for (Device device : AdbTools.devicesList) if (device.connectOnStart) Client.startDevice(device);
     }, 2000);
-  }
 
 
   // 检测激活
   // private void checkActive() {
     // if (!AppData.setting.getIsActive()) startActivity(new Intent(this, ActiveActivity.class));
   // }
+
+      @Override
+  protected void onDestroy() {
+    myBroadcastReceiver.unRegister(this);
+    super.onDestroy();
+  }
 
   // 设置按钮监听
   private void setButtonListener() {
