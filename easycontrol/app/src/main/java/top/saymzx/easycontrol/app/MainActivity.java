@@ -38,7 +38,6 @@ public class MainActivity extends Activity {
     ViewTools.setLocale(this);
     activityMainBinding = ActivityMainBinding.inflate(this.getLayoutInflater());
     setContentView(activityMainBinding.getRoot());
- 
     // 检测激活
     // checkActive();
     // 设置设备列表适配器
@@ -55,18 +54,18 @@ public class MainActivity extends Activity {
     AppData.uiHandler.postDelayed(() -> {
       for (Device device : AdbTools.devicesList) if (device.connectOnStart) Client.startDevice(device);
     }, 2000);
+  }
 
-
-  // 检测激活
-  // private void checkActive() {
-    // if (!AppData.setting.getIsActive()) startActivity(new Intent(this, ActiveActivity.class));
-  // }
-
-      @Override
+  @Override
   protected void onDestroy() {
     myBroadcastReceiver.unRegister(this);
     super.onDestroy();
   }
+
+  // 检测激活
+  // private void checkActive() {
+   // if (!AppData.setting.getIsActive()) startActivity(new Intent(this, ActiveActivity.class));
+  // }
 
   // 设置按钮监听
   private void setButtonListener() {
