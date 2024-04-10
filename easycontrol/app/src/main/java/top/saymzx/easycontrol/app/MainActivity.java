@@ -43,12 +43,6 @@ public class MainActivity extends Activity {
     else startApp();
   }
 
-  @Override
-  protected void onDestroy() {
-    myBroadcastReceiver.unRegister(this);
-    super.onDestroy();
-  }
-
     // 检测激活
     // checkActive();
     // 设置设备列表适配器
