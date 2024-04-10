@@ -38,10 +38,6 @@ public class MainActivity extends Activity {
     ViewTools.setLocale(this);
     activityMainBinding = ActivityMainBinding.inflate(this.getLayoutInflater());
     setContentView(activityMainBinding.getRoot());
-     // 检测权限
-    if (!checkPermission()) createAlert();
-    else startApp();
-  }
  
   @Override
   protected void onDestroy() {
@@ -50,7 +46,7 @@ public class MainActivity extends Activity {
   }
 
     // 启动步骤
-  private void startApp() {
+    private void startApp() {
     // 检测激活
     // checkActive();
     // 设置设备列表适配器
@@ -74,16 +70,6 @@ public class MainActivity extends Activity {
   // private void checkActive() {
     // if (!AppData.setting.getIsActive()) startActivity(new Intent(this, ActiveActivity.class));
   // }
-
-// 检查权限
-  private boolean checkPermission() {
-    // 检查悬浮窗权限，防止某些设备如鸿蒙不兼容
-    try {
-      return Build.VERSION.SDK_INT < Build.VERSION_CODES.M || Settings.canDrawOverlays(this);
-    } catch (Exception ignored) {
-      return true;
-    }
-  }
 
   // 设置按钮监听
   private void setButtonListener() {
