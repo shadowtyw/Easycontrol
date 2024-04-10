@@ -42,7 +42,15 @@ public class MainActivity extends Activity {
     if (!checkPermission()) createAlert();
     else startApp();
   }
+ 
+  @Override
+  protected void onDestroy() {
+    myBroadcastReceiver.unRegister(this);
+    super.onDestroy();
+  }
 
+    // 启动步骤
+  private void startApp() {
     // 检测激活
     // checkActive();
     // 设置设备列表适配器
@@ -61,11 +69,6 @@ public class MainActivity extends Activity {
     }, 2000);
   }
 
-  @Override
-  protected void onDestroy() {
-    myBroadcastReceiver.unRegister(this);
-    super.onDestroy();
-  }
 
   // 检测激活
   // private void checkActive() {
